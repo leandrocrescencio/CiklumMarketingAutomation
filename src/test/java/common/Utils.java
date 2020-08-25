@@ -17,17 +17,14 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-public class Utils  {
-
-    public static String fs = File.separator;
+public class Utils {
 
     public static final Integer DEFAULT_WAIT_TIMEOUT = 15;
-
     public static final Long DEFAULT_WAIT_SLEEP = 250L;
-
+    public static String fs = File.separator;
 
     /**
-     *This is the method to read the config.properties file
+     * This is the method to read the config.properties file
      */
     public static Properties readPropertiesFile() throws IOException {
         String path = "src" + fs + "test" + fs + "resources" + fs + "config.properties";
@@ -41,16 +38,14 @@ public class Utils  {
     }
 
     /**
-     *
      * @param element This is the webelement that has to be visible on the web page.
      */
-    public static void waitForVisibleElement(WebElement element){
+    public static void waitForVisibleElement(WebElement element) {
         WebDriverWait wait = new WebDriverWait(Hooks.driver, 30);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     /**
-     *
      * @param driver wait for the Page load for complete.
      */
     public static void waitForPageLoadComplete(WebDriver driver) {
@@ -96,14 +91,14 @@ public class Utils  {
         String currentWindow = Hooks.driver.getWindowHandle();
         List<String> openWindows = new ArrayList<>(Hooks.driver.getWindowHandles());
         if (openWindows == null || openWindows.isEmpty()) {
-            if(!waitForWindows(2, 25)) {
+            if (!waitForWindows(2, 25)) {
                 throw new Exception("The window wasn't opened.");
             }
         }
         List<String> newWindows = openWindows.stream()
                 .filter(windowsId -> !windowsId.equals(currentWindow))
                 .collect(Collectors.toList());
-        if(newWindows.size() > 0) {
+        if (newWindows.size() > 0) {
             Hooks.driver.switchTo().window(newWindows.get(0));
         }
     }

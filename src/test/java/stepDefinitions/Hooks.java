@@ -48,7 +48,7 @@ public class Hooks {
         Utils.waitForPageLoadComplete(driver);
     }
 
-   @Before()
+    @Before()
     public void openBrowser(Scenario scenario) {
 
         log.info(line + "Starting Scenario: " + scenario.getName());
@@ -110,8 +110,7 @@ public class Hooks {
             }
         }
 
-        driver.quit();
-
+       driver.quit();
 
     }
 
