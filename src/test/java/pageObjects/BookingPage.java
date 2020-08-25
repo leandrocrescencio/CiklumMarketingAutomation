@@ -16,9 +16,9 @@ public class BookingPage extends Hooks {
 
     @FindBy(how = How.XPATH, using = "//input[@id='ss']")
     public static WebElement cityInput;
-    @FindBy(how = How.CSS, using = "#frm > div.xp__fieldset.accommodation > div.xp__input-group.xp__search > div:nth-child(6) > div.c-autocomplete.sb-destination.region_second_line > ul.c-autocomplete__list.sb-autocomplete__list.sb-autocomplete__list-with_photos > li:nth-child(1)")
+    @FindBy(how = How.XPATH, using = "//*[@id='frm']/div/div/div/div/ul/li/span/span")
     public static WebElement suggestions;
-    @FindBy(how = How.CSS, using = "#frm > div.xp__fieldset.accommodation > div.xp__dates.xp__group > div.xp-calendar > div > div > div.bui-calendar__control.bui-calendar__control--next")
+    @FindBy(how = How.CSS, using = "div.bui-calendar__control.bui-calendar__control--next")
     public static WebElement datePicker;
     @FindBy(how = How.CSS, using = "div[class='xp__input-group xp__guests']")
     public static WebElement guestsSelector;

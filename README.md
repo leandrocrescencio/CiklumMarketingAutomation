@@ -25,9 +25,10 @@ do not consider the result page for this task, just the search form (city, dates
 Please identify and document the test cases you consider relevant for the search form feature.
 
 ### Test Scenarios :
-
+* - All tests were based on the smoke testing manually executed to support the automation and also identify possible business rules for the search form. 
+They are divided into positive and negative scenarios below.  
 #### Positives
-  ```bash
+  ```
   - Suggestion places should be displayed for the wording the user is typing for the place.
   - Suggestion places should be displayed if the user click the city input.
   - Selecting one suggestion should populate the city name, and trigger the date-picker exhibit. 
@@ -45,7 +46,7 @@ Please identify and document the test cases you consider relevant for the search
   ```
 
 #### Negative
-  ```bash
+  ```
   - Warning message should be displayed if an numeric city name is provided and the user click the search button.
   - Warning message should be displayed if none city name is provided and the user click the search button.
   - Warning message should be displayed if a date-rage longer than 30 nights is provided and the user click in the search button.
