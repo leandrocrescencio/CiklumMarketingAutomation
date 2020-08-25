@@ -25,7 +25,7 @@ do not consider the result page for this task, just the search form (city, dates
 Please identify and document the test cases you consider relevant for the search form feature.
 
 ### Test Scenarios :
-* - All tests were based on the smoke testing manually executed to support the automation and also identify possible business rules for the search form. 
+All tests were based on the smoke testing manually executed to support the automation and also identify possible business rules for the search form. 
 They are divided into positive and negative scenarios below.  
 #### Positives
   ```
