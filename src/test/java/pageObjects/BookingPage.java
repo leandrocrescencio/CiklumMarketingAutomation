@@ -11,29 +11,22 @@ import stepDefinitions.Hooks;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 public class BookingPage extends Hooks {
 
     @FindBy(how = How.XPATH, using = "//input[@id='ss']")
     public static WebElement cityInput;
-    @FindBy(how = How.XPATH, using = "//*[@id='frm']/div/div/div/div/ul/li/span/span")
+    @FindBy(how = How.XPATH, using = "//*[@id='frm']//div/ul/li/span/span")
     public static WebElement suggestions;
     @FindBy(how = How.CSS, using = "div.bui-calendar__control.bui-calendar__control--next")
     public static WebElement datePicker;
     @FindBy(how = How.CSS, using = "div[class='xp__input-group xp__guests']")
     public static WebElement guestsSelector;
-    @FindBy(how = How.XPATH, using = "//*[@id='xp__guests__inputs-container']/div/div/div[1]/div/div[2]/button[2]")
-    public static WebElement addAdults;
-    @FindBy(how = How.XPATH, using = "//*[@id='xp__guests__inputs-container']/div/div/div[1]/div/div[2]/button[1]")
-    public static WebElement removeAdults;
-    @FindBy(how = How.XPATH, using = "//*[@id='xp__guests__inputs-container']/div/div/div[2]/div/div[2]/button[2]")
-    public static WebElement addChildren;
-    @FindBy(how = How.XPATH, using = "//*[@id='xp__guests__inputs-container']/div/div/div[2]/div/div[2]/button[1]")
-    public static WebElement removeChildren;
-    @FindBy(how = How.XPATH, using = "//*[@id='xp__guests__inputs-container']/div/div/div[3]/div/div[2]/button[2]")
-    public static WebElement addRooms;
-    @FindBy(how = How.XPATH, using = "//*[@id='xp__guests__inputs-container']/div/div/div[3]/div/div[2]/button[1]")
-    public static WebElement removeRooms;
+    @FindBy(how = How.CSS, using = "button.bui-button.bui-button--secondary.bui-stepper__add-button")
+    public static List<WebElement> addGuestsContainer;
+    @FindBy(how = How.CSS, using = "button.bui-button.bui-button--secondary.bui-stepper__subtract-button")
+    public static List<WebElement> subtractGuestsContainer;
     @FindBy(how = How.CSS, using = "button[class='sb-searchbox__button ']")
     public static WebElement searchBtn;
     @FindBy(how = How.XPATH, using = "//*[@id='right']/div[4]/div/div[1]/div/h1")
@@ -84,12 +77,12 @@ public class BookingPage extends Hooks {
     public void setGuestsInputs(int numberOfAdults, int numberOfChildren, int numberOfRooms) {
         guestsSelector.click();
         if (numberOfAdults == 1) {
-            removeAdults.click();
+            subtractGuestsContainer.get(0).click();
         } else {
-            countToClick(numberOfAdults, 2, addAdults);
+            countToClick(numberOfAdults, 2, addGuestsContainer.get(0));
         }
-        countToClick(numberOfChildren, 0, addChildren);
-        countToClick(numberOfRooms, 1, addRooms);
+        countToClick(numberOfChildren, 0, addGuestsContainer.get(1));
+        countToClick(numberOfRooms, 1, addGuestsContainer.get(2));
 
     }
 
@@ -126,6 +119,7 @@ public class BookingPage extends Hooks {
     }
 
     public void getLowestPriceSort() {
+        Utils.waitForVisibleElement(lowestPriceSort);
         lowestPriceSort.click();
         Utils.waitForPageLoadComplete(Hooks.driver);
         Utils.addSystemWait(2);
